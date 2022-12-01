@@ -1,0 +1,68 @@
+<header class="p-3 ">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <span class="logo" routerLink="/"> <a class="v">V</a><a class="g">G</a> <a class="p">P</a></span>
+  
+        </a>
+  
+        
+  
+        <form  [formGroup]="searchForm" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input formControlName="search" name="search" type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+        </form>
+  
+        <div class="text-end">
+          <button type="button" id="btn-circle" class="hvr-buzz"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+ <div class="filters">
+    <mat-form-field>
+        <mat-label><strong>Sort</strong></mat-label>
+        <mat-select
+         panelClass="sort-select"
+          [(ngModel)]="sort"
+          (selectionChange)="searchGames(sort)" 
+          >
+            <mat-option value="name">Name</mat-option>
+            <mat-option value="-released">Released</mat-option>
+            <mat-option value="-added">Added</mat-option>
+            <mat-option value="-created">Created</mat-option>
+            <mat-option value="-updated">Updated</mat-option>
+            <mat-option value="-rating">Rating</mat-option>
+            <mat-option value="-metacritic">Metacritic</mat-option>
+
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="games">
+    <ng-container *ngFor="let game of games | searchFilter: searchForm.value.search">
+    <div class="game" (click)="openGameDetails(game.id)">
+        <div class="game-thumb-container hvr-wobble-to-bottom-right game-images"> <!-- I used ialunn css-->
+            <img
+            *ngIf="game.background_image"
+            src="{{ game.background_image }}" 
+            alt="thumbnail" 
+            class="game-thumbnail"
+            />
+            <p *ngIf="!game.background_image">No Image</p>
+        </div>
+        <div class="game-description">
+            <p class="game-name">{{ game.name }}</p>
+            <div class="game-platforms">
+                <img 
+                *ngFor="let gamePlatform of game.parent_platforms"
+                class="game-platform"
+                src="assets/images/platforms/{{ gamePlatform.platform.slug }}.svg " 
+                alt="{{ gamePlatform.platform.slug }}" 
+                />
+            </div>
+        </div>
+    </div>
+</ng-container>
+</div> 

@@ -1,0 +1,75 @@
+.game {
+
+    &-tabs {
+        //detay sayfasının alt kısmı
+        background: rgb(5, 8, 8); 
+        color: #fff;
+        text-align: left;
+        padding: 30px;
+
+        &-par {
+            // paragraf metinleri
+            padding: 20px 20px 0 20px;
+            margin-bottom: 4px;
+        }
+
+        &-link {
+            color: #fff;
+        }
+
+        &-votes {
+            margin-left: 20px;
+            display: flex;
+
+            &-count {
+                margin-left: 5px;
+            }
+        }
+        ::ng-deep .mat-tab-labels {
+            justify-content: center;
+          }
+        }
+      
+        &-votes {
+          &-up {
+            color: #5ee432;
+          }
+          &-down {
+            color: #ef4655;
+          }
+          &-up:hover { // I added
+            color: #1a6302;
+            cursor: pointer;
+            transform: translateY(-3px);
+          }
+          &-down:hover { // // I added
+            color: #801019;
+            cursor: pointer;
+            transform: translateY(-5px);
+          }
+
+          &-count {
+            margin-left: 5px;
+            margin-right: 10px;
+            vertical-align: super;
+          }
+        }
+      
+        &-description {
+          padding: 20px;
+        }
+       
+        &-screenshot {
+          margin-top: 5px;
+          width: calc(50% - 10px);
+      
+          &:nth-child(even) {
+            margin-left: 10px;
+          }
+        }
+      
+        &-trailer {
+          width: 100%;
+          margin: 20px 0;
+        }
+      }
